@@ -1,0 +1,15 @@
+{
+	"name": "botlist.space",
+	"version": "1.0.0",
+	"description": "A simple library for connecting with the botlist.space API.",
+	"main": "lib/Client.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Jacob Gunther",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"snekfetch": "^3.6.4"
+	}
+}
