@@ -21,7 +21,7 @@ client.getBot('228537642583588864').then(bot => {
 });
 
 client.getSelfBot().then(bot => {
-	console.log('The name of the current bot is ' + bot.name + '.');
+	console.log('The name of the current bot is ' + bot.username + '.');
 }).catch((e) => {
 	console.error('Failed to get self bot. ' + e.code);
 });
