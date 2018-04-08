@@ -11,6 +11,12 @@ const Client = require('botlist.space');
 
 const client = new Client('bot ID', 'bot token from site');
 
+client.getStats().then(stats => {
+	console.log('The site has ' + stats.approvedBots + ' approved bots and ' + stats.unapprovedBots + ' unapproved bots.');
+}).catch((e) => {
+	console.error('Failed to get all bots. ' + e.code);
+});
+
 client.getAllBots().then(bots => {
 	console.log('The site has a total of ' + bots.length + ' bots.');
 }).catch((e) => {

@@ -2,6 +2,12 @@ const Client = require('../lib/Client');
 
 const client = new Client('307994108792799244', 'xxx');
 
+client.getStats().then(stats => {
+	console.log('The site has ' + stats.approvedBots + ' approved bots and ' + stats.unapprovedBots + ' unapproved bots.');
+}).catch((e) => {
+	console.error('Failed to get all bots. ' + e.code);
+});
+
 client.getAllBots().then(bots => {
 	console.log('The site has a total of ' + bots.length + ' bots.');
 }).catch((e) => {
