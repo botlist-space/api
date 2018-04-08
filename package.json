@@ -1,6 +1,6 @@
 {
 	"name": "botlist.space",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A simple library for connecting with the botlist.space API.",
 	"main": "lib/Client.js",
 	"scripts": {
@@ -11,5 +11,9 @@
 	"license": "Apache-2.0",
 	"dependencies": {
 		"snekfetch": "^3.6.4"
+	},
+	"repository": {
+		"type" : "git",
+		"url" : "https://github.com/botlist-space/api.git"
 	}
 }
