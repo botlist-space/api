@@ -12,7 +12,7 @@ const Client = require('botlist.space');
 const client = new Client('bot ID', 'bot token from site');
 
 client.getStats().then(stats => {
-	console.log('The site has ' + stats.approvedBots + ' approved bots and ' + stats.unapprovedBots + ' unapproved bots.');
+	console.log('The site has ' + stats.bots.approved + ' approved bots and ' + stats.bots.unapproved + ' unapproved bots.');
 }).catch((e) => {
 	console.error('Failed to get all bots. ' + e.code);
 });
@@ -24,7 +24,7 @@ client.getAllBots().then(bots => {
 });
 
 client.getBot('228537642583588864').then(bot => {
-	console.log('Vexera has ' + bot.count + ' servers.');
+	console.log('Vexera has ' + bot.server_count + ' servers.');
 }).catch((e) => {
 	console.error('Failed to get bot. ' + e.code);
 });
