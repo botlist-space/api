@@ -13,7 +13,7 @@
 		"snekfetch": "^3.6.4"
 	},
 	"repository": {
-		"type" : "git",
-		"url" : "https://github.com/botlist-space/api.git"
+		"type": "git",
+		"url": "https://github.com/botlist-space/api.git"
 	}
 }
