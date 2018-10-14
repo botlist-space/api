@@ -1,14 +1,17 @@
 {
 	"name": "botlist.space",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"description": "A simple library for connecting with the botlist.space API.",
 	"main": "lib/Client.js",
-	"scripts": {},
+	"scripts": {
+		"docs": "jsdoc lib/ -R README.md -c .jsdoc.json"
+	},
 	"keywords": [],
-	"author": "Jacob Gunther",
+	"author": "PassTheMayo",
 	"license": "MIT",
 	"dependencies": {
-		"snekfetch": "^4.0.4"
+		"snekfetch": "^4.0.4",
+		"toast-jsdoc": "^1.0.2"
 	},
 	"repository": {
 		"type": "git",
