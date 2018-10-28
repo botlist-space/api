@@ -4,6 +4,7 @@
 	"description": "A simple library for connecting with the botlist.space API.",
 	"main": "lib/Client.js",
 	"scripts": {
+		"test": "node test-folder/test.js",
 		"docs": "jsdoc lib/ -R README.md -c .jsdoc.json"
 	},
 	"keywords": [],
