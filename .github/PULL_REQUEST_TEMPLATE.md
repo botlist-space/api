@@ -8,7 +8,7 @@
 
 - [ ] Includes changing Library Code
     - [ ] Minor Changes (Var Changes, Method Renames, Property Renames)
-    - [ ] Major Changes (Method Renames, Structure Renames, Property to Method, Method to Property)
-- Includes changing README.md file
+    - [ ] Major Changes (Method Renames, Structure Renames, Property to Method, Method to Property, New Functions)
+- [ ] Includes changing README.md file
     - [ ] Minor Changes (Typo, Title Rename, Word Replacement)
     - [ ] Major Changes (Everything Else)
