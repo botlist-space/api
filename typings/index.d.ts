@@ -5,7 +5,6 @@
 // License: MIT
 
 declare module 'botlist.space' {
-
     export default class Client {
         constructor(id?: string, token?: string);
 
