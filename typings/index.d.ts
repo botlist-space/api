@@ -13,13 +13,13 @@ declare module 'botlist.space' {
         public _token?: string;
         public _id?: string;
         public getStats(): Promise<Statistics | HTTPError>;
-        public getAllBots(): Promise<Collection | HTTPError>;
+        public getAllBots(): Promise<Collection<string, Bot> | HTTPError>;
         public getBot(id: string): Promise<Bot | HTTPError>;
-        public getUpvotes(idsOnly?: boolean): Promise<Collection | HTTPError>;
+        public getUpvotes(idsOnly?: boolean): Promise<Collection<string, User> | HTTPError>;
         public hasUpvoted(userID: string): Promise<boolean | HTTPError>;
         public getSelfBot(): Promise<Bot | HTTPError>;
         public postServerCount(count: number | number[]): Promise<GenericResult | HTTPError>;
-        public getAllServers(): Promise<Collection, HTTPError>;
+        public getAllServers(): Promise<Collection<string, Server> | HTTPError>;
         public getServer(id: string): Promise<Server | HTTPError>;
         public getUser(id: string): Promise<User | HTTPError>;
     }
