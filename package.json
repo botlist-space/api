@@ -3,7 +3,6 @@
 	"version": "2.1.5",
 	"description": "A simple library for connecting with the botlist.space API.",
 	"main": "lib/Client.js",
-	"types": "typings/index.d.ts",
 	"scripts": {
 		"docs": "jsdoc lib/ -R README.md -c .jsdoc.json"
 	},
