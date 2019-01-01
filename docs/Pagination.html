@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Statistics - Documentation</title>
+    <title>Pagination - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Statistics</h1>
+    <h1 class="page-title">Pagination</h1>
     
     
 
@@ -40,10 +40,10 @@
 <header>
     
         <h2>
-        Statistics
+        Pagination
         </h2>
         
-            <div class="class-description">Contains basic statistics of the site, including bot, server and user count.</div>
+            <div class="class-description">A generic paginated endpoint.</div>
         
     
 </header>
@@ -57,7 +57,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Statistics"><span class="type-signature"></span>new Statistics<span class="signature">(result)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Pagination"><span class="type-signature"></span>new Pagination<span class="signature">(result)</span><span class="type-signature"></span></h4>
 
     
 
@@ -102,7 +102,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -112,7 +112,7 @@
 
             
 
-            <td class="description last">The raw result returned from the API.</td>
+            <td class="description last">The result of the paginated endpoint.</td>
         </tr>
 
     
@@ -153,7 +153,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structures_Statistics.js.html">Structures/Statistics.js</a>, <a href="Structures_Statistics.js.html#line5">line 5</a>
+        <a href="Structures_Pagination.js.html">Structures/Pagination.js</a>, <a href="Structures_Pagination.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -183,6 +183,17 @@
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Collection.html">Collection</a></li>
+    </ul>
+
+
+    
 
     
 
@@ -202,14 +213,174 @@
 
     
 
-    <h4 class="name" id="getApprovedBots"><span class="type-signature"></span>getApprovedBots<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="filter"><span class="type-signature"></span>filter<span class="signature">(func)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
 
 
 <div class="description">
-    Gets the number of approved bots listed on the site.
+    Takes all values in the array, and calls the callback for each value and returns an array of filtered values.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>func</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The array that is used to filter values.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#filter">Collection#filter</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Structures_Collection.js.html">Structures/Collection.js</a>, <a href="Structures_Collection.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    The result of filtered values.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            </div>
+        
+            <div class="subsection-item">
+                
+
+    
+
+    <h4 class="name" id="getPage"><span class="type-signature"></span>getPage<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Gets the page number.
 </div>
 
 
@@ -253,7 +424,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structures_Statistics.js.html">Structures/Statistics.js</a>, <a href="Structures_Statistics.js.html#line37">line 37</a>
+        <a href="Structures_Pagination.js.html">Structures/Pagination.js</a>, <a href="Structures_Pagination.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -280,7 +451,7 @@
 
         
 <div class="param-desc">
-    The number of approved bots listed on the site.
+    The page number.
 </div>
 
 
@@ -308,14 +479,14 @@
 
     
 
-    <h4 class="name" id="getTags"><span class="type-signature"></span>getTags<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="getPages"><span class="type-signature"></span>getPages<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
 
 
 <div class="description">
-    Gets the number of unapproved bots listed on the site.
+    Gets the page count.
 </div>
 
 
@@ -359,7 +530,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structures_Statistics.js.html">Structures/Statistics.js</a>, <a href="Structures_Statistics.js.html#line55">line 55</a>
+        <a href="Structures_Pagination.js.html">Structures/Pagination.js</a>, <a href="Structures_Pagination.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -386,7 +557,7 @@
 
         
 <div class="param-desc">
-    The number of unapproved bots listed on the site.
+    The page count.
 </div>
 
 
@@ -414,14 +585,14 @@
 
     
 
-    <h4 class="name" id="getTotalBots"><span class="type-signature"></span>getTotalBots<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="map"><span class="type-signature"></span>map<span class="signature">(func)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
 
 
 <div class="description">
-    Gets the number of total bots listed on the site.
+    Takes each value, calls the function with the value and returns an array of the output of the callback.
 </div>
 
 
@@ -430,6 +601,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>func</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -442,6 +662,11 @@
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#map">Collection#map</a>
+    </li></ul></dd>
     
 
     
@@ -465,7 +690,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structures_Statistics.js.html">Structures/Statistics.js</a>, <a href="Structures_Statistics.js.html#line28">line 28</a>
+        <a href="Structures_Collection.js.html">Structures/Collection.js</a>, <a href="Structures_Collection.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -492,7 +717,7 @@
 
         
 <div class="param-desc">
-    The number of total bots listed on the site.
+    The result of the mapped values.
 </div>
 
 
@@ -503,7 +728,7 @@
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">Array</span>
 
 
     </dd>
@@ -520,14 +745,14 @@
 
     
 
-    <h4 class="name" id="getUnapprovedBots"><span class="type-signature"></span>getUnapprovedBots<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="toArray"><span class="type-signature"></span>toArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
 
 
 <div class="description">
-    Gets the number of unapproved bots listed on the site.
+    Converts the values in the collection to an array.
 </div>
 
 
@@ -548,6 +773,11 @@
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#toArray">Collection#toArray</a>
+    </li></ul></dd>
     
 
     
@@ -571,7 +801,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structures_Statistics.js.html">Structures/Statistics.js</a>, <a href="Structures_Statistics.js.html#line46">line 46</a>
+        <a href="Structures_Collection.js.html">Structures/Collection.js</a>, <a href="Structures_Collection.js.html#line52">line 52</a>
     </li></ul></dd>
     
 
@@ -598,7 +828,7 @@
 
         
 <div class="param-desc">
-    The number of unapproved bots listed on the site.
+    The collection converted to an array.
 </div>
 
 
@@ -609,7 +839,7 @@
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">Array</span>
 
 
     </dd>
@@ -626,14 +856,14 @@
 
     
 
-    <h4 class="name" id="getUsers"><span class="type-signature"></span>getUsers<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
 
 
 
 <div class="description">
-    Gets the number of users logged into the site.
+    Converts the values in the collection into a string version of an array.
 </div>
 
 
@@ -654,6 +884,11 @@
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#toJSON">Collection#toJSON</a>
+    </li></ul></dd>
     
 
     
@@ -677,7 +912,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structures_Statistics.js.html">Structures/Statistics.js</a>, <a href="Structures_Statistics.js.html#line64">line 64</a>
+        <a href="Structures_Collection.js.html">Structures/Collection.js</a>, <a href="Structures_Collection.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -704,7 +939,7 @@
 
         
 <div class="param-desc">
-    The number of users logged into the site.
+    An array converted into string format.
 </div>
 
 
@@ -715,7 +950,118 @@
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            </div>
+        
+            <div class="subsection-item">
+                
+
+    
+
+    <h4 class="name" id="toKeyArray"><span class="type-signature"></span>toKeyArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Converts the keys in this collection to an array.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#toKeyArray">Collection#toKeyArray</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Structures_Collection.js.html">Structures/Collection.js</a>, <a href="Structures_Collection.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    The collection converted to an array.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
 
 
     </dd>

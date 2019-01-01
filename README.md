@@ -5,7 +5,10 @@ A simple library for connecting with the botlist.space API.
 Simply install by navigating to your project directory then running `npm i botlist.space`.
 
 ## Documentation
-[https://botlist-space.github.io/api/](https://botlist-space.github.io/api/)
+https://botlist-space.github.io/api/
+
+## API Documentation
+https://botlistspace.gitbook.io/api/
 
 ## License
 [MIT](https://github.com/botlist-space/api/blob/master/LICENSE)
