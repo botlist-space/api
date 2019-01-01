@@ -153,7 +153,7 @@
 
     
 
-    <h4 class="name" id="getAllBots"><span class="type-signature"></span>getAllBots<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
+    <h4 class="name" id="getAllBots"><span class="type-signature"></span>getAllBots<span class="signature">(page<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Pagination.html">Pagination</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
 
     
 
@@ -169,6 +169,75 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">The page number.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -204,7 +273,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line56">line 56</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -238,7 +307,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)></span>
+<span class="param-type">Promise.&lt;(<a href="Pagination.html">Pagination</a>|<a href="HTTPError.html">HTTPError</a>)></span>
 
 
     </dd>
@@ -355,7 +424,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line85">line 85</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -457,7 +526,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line151">line 151</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line153">line 153</a>
     </li></ul></dd>
     
 
@@ -610,7 +679,7 @@
 
     
 
-    <h4 class="name" id="getUpvotes"><span class="type-signature"></span>getUpvotes<span class="signature">(idsOnly)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
+    <h4 class="name" id="getUpvotes"><span class="type-signature"></span>getUpvotes<span class="signature">(page<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
 
     
 
@@ -641,7 +710,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -653,23 +726,39 @@
 
         <tr>
             
-                <td class="name"><code>idsOnly</code></td>
+                <td class="name"><code>page</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">number</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">Use true if you only want to return IDs of users who upvoted in the last 24 hours. False for all user data.</td>
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">The page number.</td>
         </tr>
 
     
@@ -710,7 +799,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line106">line 106</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line107">line 107</a>
     </li></ul></dd>
     
 
@@ -861,7 +950,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line184">line 184</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line186">line 186</a>
     </li></ul></dd>
     
 
@@ -912,7 +1001,7 @@
 
     
 
-    <h4 class="name" id="getUserBots"><span class="type-signature"></span>getUserBots<span class="signature">(id)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="User.html">User</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
+    <h4 class="name" id="getUserBots"><span class="type-signature"></span>getUserBots<span class="signature">(id, page<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="User.html">User</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
 
     
 
@@ -943,7 +1032,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -968,10 +1061,61 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The ID of the user you want to get information on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">The page number.</td>
         </tr>
 
     
@@ -1012,7 +1156,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line205">line 205</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line208">line 208</a>
     </li></ul></dd>
     
 
@@ -1163,7 +1307,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line132">line 132</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -1317,7 +1461,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line161">line 161</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line163">line 163</a>
     </li></ul></dd>
     
 
@@ -1636,7 +1780,7 @@
 
     
 
-    <h4 class="name" id="getAllBots"><span class="type-signature"></span>getAllBots<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
+    <h4 class="name" id="getAllBots"><span class="type-signature"></span>getAllBots<span class="signature">(page<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Pagination.html">Pagination</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
 
     
 
@@ -1652,6 +1796,75 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">The page number.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1687,7 +1900,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line56">line 56</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -1721,7 +1934,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)></span>
+<span class="param-type">Promise.&lt;(<a href="Pagination.html">Pagination</a>|<a href="HTTPError.html">HTTPError</a>)></span>
 
 
     </dd>
@@ -1838,7 +2051,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line85">line 85</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -1940,7 +2153,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line151">line 151</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line153">line 153</a>
     </li></ul></dd>
     
 
@@ -2093,7 +2306,7 @@
 
     
 
-    <h4 class="name" id="getUpvotes"><span class="type-signature"></span>getUpvotes<span class="signature">(idsOnly)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
+    <h4 class="name" id="getUpvotes"><span class="type-signature"></span>getUpvotes<span class="signature">(page<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Collection.html">Collection</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
 
     
 
@@ -2124,7 +2337,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -2136,23 +2353,39 @@
 
         <tr>
             
-                <td class="name"><code>idsOnly</code></td>
+                <td class="name"><code>page</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">number</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">Use true if you only want to return IDs of users who upvoted in the last 24 hours. False for all user data.</td>
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">The page number.</td>
         </tr>
 
     
@@ -2193,7 +2426,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line106">line 106</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line107">line 107</a>
     </li></ul></dd>
     
 
@@ -2344,7 +2577,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line184">line 184</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line186">line 186</a>
     </li></ul></dd>
     
 
@@ -2395,7 +2628,7 @@
 
     
 
-    <h4 class="name" id="getUserBots"><span class="type-signature"></span>getUserBots<span class="signature">(id)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="User.html">User</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
+    <h4 class="name" id="getUserBots"><span class="type-signature"></span>getUserBots<span class="signature">(id, page<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="User.html">User</a>|<a href="HTTPError.html">HTTPError</a>)>}</span></h4>
 
     
 
@@ -2426,7 +2659,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -2451,10 +2688,61 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The ID of the user you want to get information on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">The page number.</td>
         </tr>
 
     
@@ -2495,7 +2783,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line205">line 205</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line208">line 208</a>
     </li></ul></dd>
     
 
@@ -2646,7 +2934,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line132">line 132</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -2800,7 +3088,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line161">line 161</a>
+        <a href="Client.js.html">Client.js</a>, <a href="Client.js.html#line163">line 163</a>
     </li></ul></dd>
     
 
@@ -2863,7 +3151,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Dec 31 2018 20:04:51 GMT-0600 (Central Standard Time) using the Toast theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 01 2019 10:45:07 GMT-0800 (Pacific Standard Time) using the Toast theme.
 </footer>
 
 <script>prettyPrint();</script>
