@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Structures/Collection.js - Documentation</title>
+    <title>Global - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,92 +28,299 @@
 
 <div id="main">
     
-    <h1 class="page-title">Structures/Collection.js</h1>
+    <h1 class="page-title">Global</h1>
     
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * An extended version of Map, including methods that are Array-like.
- * @extends Map
- * @constructor
- */
-class Collection extends Map {
-	/**
-	 * @param {*} [iterable] An iterable something to be made into key-value pairs.
-	 * @memberof Collection
-	 */
-	constructor(iterable) {
-		super(iterable);
-	}
+        <h2>
+        
+        </h2>
+        
+    
+</header>
 
-	/**
-	 * Takes all values in the array, and calls the callback for each value and returns an array of filtered values.
-	 * @param {Function} func The array that is used to filter values.
-	 * @returns {Array} The result of filtered values.
-	 * @memberof Collection
-	 */
-	filter(func) {
-		const result = [];
-		const keys = this.toKeyArray();
-		const values = this.toArray();
-		for (let i = 0; i &lt; values.length; i++) {
-			if (func(values[i], keys[i])) result.push(values[i]);
-		}
-		return result;
-	}
+<article>
+    <div class="container-overview">
+    
+        
 
-	/**
-	 * Takes each value, calls the function with the value and returns an array of the output of the callback.
-	 * @param {Function} func
-	 * @returns {Array} The result of the mapped values.
-	 * @memberof Collection
-	 */
-	map(func) {
-		const keys = this.toKeyArray();
-		const values = this.toArray();
-		const result = [];
-		for (let i = 0; i &lt; values.length; i++) {
-			result.push(func(values[i], keys[i]));
-		}
-		return result;
-	}
+        
 
-	/**
-	 * Converts the values in the collection to an array.
-	 * @returns {Array} The collection converted to an array.
-	 * @memberof Collection
-	 */
-	toArray() {
-		return [ ...this.values() ];
-	}
 
-	/**
-	 * Converts the keys in this collection to an array.
-	 * @returns {Array} The collection converted to an array.
-	 * @memberof Collection
-	 */
-	toKeyArray() {
-		return [ ...this.keys() ];
-	}
+<dl class="details">
 
-	/**
-	 * Converts the values in the collection into a string version of an array.
-	 * @returns {string} An array converted into string format.
-	 * @memberof Collection
-	 */
-	toJSON() {
-		return JSON.stringify(this.toArray());
-	}
-}
+    
 
-module.exports = Collection;</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+
+            <div class="subsection-item">
+
+                
+                    
+<h4 class="name" id="ClientOptions">ClientOptions</h4>
+
+
+
+
+<div class="description">
+    Options when instantiating the Client.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul class="ul-type">
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5>Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">A bot ID.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>botToken</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">A bot token from the site. This and/or userToken must be present.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userToken</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">A user token from the site. This and/or botToken must be present.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Structures_ClientOptions.js.html">Structures/ClientOptions.js</a>, <a href="Structures_ClientOptions.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+                
+
+            </div>
+            
+    
+
+    
+</article>
+
+</section>
 
 
 
