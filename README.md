@@ -8,7 +8,7 @@ Simply install by navigating to your project directory then running `npm i botli
 https://botlist-space.github.io/api/
 
 ## API Documentation
-https://botlistspace.gitbook.io/api/
+https://docs.botlist.space
 
 ## License
 [MIT](https://github.com/botlist-space/api/blob/master/LICENSE)
