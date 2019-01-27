@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Structures/User.js - Documentation</title>
+    <title>CloseEvent - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,104 +28,314 @@
 
 <div id="main">
     
-    <h1 class="page-title">Structures/User.js</h1>
+    <h1 class="page-title">CloseEvent</h1>
     
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * A generic user returned from anywhere in the API.
- * @constructor
- */
-class User {
-	/**
-	 * @param {object} user The raw user object that was sent from the API.
-	 * @property {string} id The ID of the user.
-	 * @property {string} avatarURL The absolute path of the avatar for the user.
-	 * @property {string} username The username of the user.
-	 * @property {string} discriminator The discriminator of the user.
-	 * @property {?string} shortDescription The short description of the user.
-	 * @memberof User
-	 */
-	constructor(user) {
-		this.id = user.id;
-		this.avatarURL = user.avatar;
-		this.username = user.username;
-		this.discriminator = user.discriminator;
-		this.shortDescription = user.short_description;
-	}
+        <h2>
+        CloseEvent
+        </h2>
+        
+            <div class="class-description">The class that holds information on close events.</div>
+        
+    
+</header>
 
-	/**
-	 * Gets the absolute URL for the user's profile.
-	 * @returns {string} The absolute URL for the user's profile.
-	 * @memberof User
-	 */
-	getURL() {
-		return 'https://botlist.space/user/' + this.getID();
-	}
+<article>
+    <div class="container-overview">
+    
+        
 
-	/**
-	 * Gets the ID of the user.
-	 * @returns {string} The ID of the user.
-	 * @memberof User
-	 */
-	getID() {
-		return this.id;
-	}
+    
+    <h2>Constructor</h2>
+    
 
-	/**
-	 * Gets the username of the user.
-	 * @returns {string} The username of the user.
-	 * @memberof User
-	 */
-	getUsername() {
-		return this.username;
-	}
+    <h4 class="name" id="CloseEvent"><span class="type-signature"></span>new CloseEvent<span class="signature">(code, message<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
 
-	/**
-	 * Gets the discriminator of the user.
-	 * @returns {string} The discriminator of the user.
-	 * @memberof User
-	 */
-	getDiscriminator() {
-		return this.discriminator;
-	}
+    
 
-	/**
-	 * Gets the full username and discriminator of the user added together using a #.
-	 * @returns {string} The full username and discriminator of the user added together using a #.
-	 * @memberof User
-	 */
-	getTag() {
-		return this.getUsername() + '#' + this.getDiscriminator();
-	}
 
-	/**
-	 * Gets the full avatar URL of the user.
-	 * @returns {string} The full avatar URL of the user.
-	 * @memberof User
-	 */
-	getAvatarURL() {
-		return this.avatarURL;
-	}
 
-	/**
-	 * Gets the short description of the user.
-	 * @returns {string} The short description of the user.
-	 * @memberof Use
-	 */
-	getShortDescription() {
-		return this.shortDescription;
-	}
-}
 
-module.exports = User;</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The close code.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The close message.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+    <h5>Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The close code.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The close message.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="WebSocket.js.html">WebSocket.js</a>, <a href="WebSocket.js.html#line150">line 150</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

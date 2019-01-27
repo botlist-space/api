@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Structures/Bot.js - Documentation</title>
+    <title>WebSocket.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Structures/Bot.js</h1>
+    <h1 class="page-title">WebSocket.js</h1>
     
     
 
@@ -37,200 +37,202 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Collection = require('./Collection');
-const User = require('./User');
+            <pre class="prettyprint source linenums"><code>const ws = require('ws');
+const EventEmitter = require('events').EventEmitter;
+
+const User = require('./Structures/User');
 
 /**
- * A class which represents a bot that is listed on the site.
- * @constructor
+ * Creates a new gateway client.
+ * @extends EventEmitter
+ * @class
  */
-class Bot {
+class WebSocket extends EventEmitter {
 	/**
-	 * @param {object} bot Contains the bot information returned raw from the site.
-	 * @property {string} id The ID of the bot.
-	 * @property {string} username The username of the bot.
-	 * @property {string} discriminator The discriminator number of the bot.
-	 * @property {string} shortDescription A short description of the purpose of the bot.
-	 * @property {string} fullDescription A detailed description of the bot. Contains Markdown, may be blank.
-	 * @property {string} avatarURL The URL for the avatar of the bot. Not guaranteed to be available from Discord.
-	 * @property {string} invite The invite URL for the bot provided by the owner.
-	 * @property {boolean} avatarChildFriendly A boolean stating if the avatar should be considered child friendly.
-	 * @property {string} library The name of the library which powers the back-end of the bot.
-	 * @property {string} prefix A short prefix which is required to use the bot's commands.
-	 * @property {Collection&lt;string, User>} owners A collection of User classes which hold listed owner's information.
-	 * @property {?string} vanity A string containing the vanity of the bot. May be null.
-	 * @property {object} links An object that contains social links.
-	 * @property {number} createdAt A timestamp in milliseconds since the bot was added to the site.
-	 * @property {number} updatedAt A timestamp in milliseconds since the bot was last updated.
-	 * @memberof Bot
+	 * @param {object} options An object with options for the gateway.
+	 * @param {array&lt;string>} options.tokens An array of bot tokens, used as authentication.
+	 * @param {boolean} [options.reconnect] Tells the websocket to reconnect after a disconnect. Always reconnects after a 4006 error.
+	 * @param {number} [options.heartbeatInterval] The amount of seconds between heartbeats. Must be below or equal to 55.
 	 */
-	constructor(bot) {
-		this.id = bot.id;
-		this.username = bot.username;
-		this.discriminator = bot.discriminator;
-		this.shortDescription = bot.short_description;
-		this.fullDescription = bot.full_description;
-		this.avatarURL = bot.avatar;
-		this.invite = bot.invite;
-		this.avatarChildFriendly = bot.avatarChildFriendly;
-		this.library = bot.library;
-		this.prefix = bot.prefix;
-		this.owners = new Collection();
-		for (let i = 0; i &lt; bot.owners.length; i++) {
-			this.owners.set(bot.owners[i].id, new User(bot.owners[i]));
+	constructor(options) {
+		super();
+
+		if (!(options instanceof Object)) throw new TypeError('Options must be an object');
+		if (!(options.tokens instanceof Array) || !options.tokens.every((token) => typeof token === 'string')) throw new TypeError('\'tokens\' must be an array of strings');
+		if ('heartbeatInterval' in options &amp;&amp; !(options.tokens instanceof Number)) throw new TypeError('\'heartbeatInterval\' must be a number when provided');
+		if ('heartbeatInterval' in options &amp;&amp; options.heartbeatInterval > 55) throw new TypeError('\'heartbeatInterval\' must be less than or equal to 55');
+		if ('reconnect' in options &amp;&amp; !(options.reconnect instanceof Boolean)) throw new TypeError('\'reconnect\' must be a boolean when provided');
+
+		this._socket = new ws('wss://gateway.botlist.space');
+
+		this._socket.on('open', this._onOpen.bind(this));
+		this._socket.on('message', this._onMessage.bind(this));
+		this._socket.on('close', this._onClose.bind(this));
+		this._socket.on('error', this._onError.bind(this));
+
+		this._heartbeat = null;
+
+		this._options = {
+			heartbeatInterval: options.heartbeatInterval || 45,
+			reconnect: options.reconnect || true,
+			tokens: options.tokens
+		};
+	}
+
+	/**
+	 * Called when the socket opens.
+	 * @private
+	 * @extends WebSocket
+	 */
+	_onOpen() {
+		this.emit('connected');
+
+		this._send(0, {
+			tokens: this._options.tokens
+		});
+
+		this._heartbeat = setInterval(() => {
+			if (this._socket.readyState === this._socket.OPEN) {
+				this._sendHeartbeat();
+			} else {
+				clearInterval(this._heartbeat);
+
+				this._heartbeat = null;
+			}
+		}, 1000 * this._options.heartbeatInterval);
+
+		this._heartbeat.unref();
+	}
+
+	/**
+	 * Called when the socket sends a message.
+	 * @private
+	 * @extends WebSocket
+	 */
+	_onMessage(payload) {
+		try {
+			payload = JSON.parse(payload);
+
+			if (payload.op === 2) {
+				this.emit('view', new BotViewEvent(payload.d));
+			} else if (payload.op === 3) {
+				this.emit('invite', new BotInviteEvent(payload.d));
+			} else if (payload.op === 4) {
+				this.emit('upvote', new BotUpvoteEvent(payload.d));
+
+			}
+		} catch (e) {
+			this.emit('error', e);
 		}
-		this.vanity = bot.vanity;
-		this.links = bot.links;
-		this.createdAt = bot.created_at;
-		this.updatedAt = bot.updated_at;
 	}
 
 	/**
-	 * Returns an absolute path to view the bot on the site.
-	 * @returns {string} The ID of the bot.
-	 * @memberof Bot
+	 * Called when the socket closes.
+	 * @private
+	 * @extends WebSocket
 	 */
-	getURL() {
-		return 'https://botlist.space/bot/' + this.getID();
+	_onClose(code, message) {
+		clearInterval(this._heartbeat);
+		this._heartbeat = null;
+
+		if (this._options.reconnect || code === 4006) {
+			delete this._socket;
+
+			this._socket = new ws('wss://gateway.botlist.space');
+			this._socket.on('open', this._onOpen.bind(this));
+			this._socket.on('message', this._onMessage.bind(this));
+			this._socket.on('close', this._onClose.bind(this));
+			this._socket.on('error', this._onError.bind(this));
+		}
+
+		if (code !== 4006) this.emit('disconnected', new CloseEvent(code, message));
 	}
 
 	/**
-	 * Gets the ID of the bot.
-	 * @returns {string}
-	 * @memberof Bot
+	 * Called when the socket errors.
+	 * @private
+	 * @extends WebSocket
 	 */
-	getID() {
-		return this.id;
+	_onError(...errors) {
+		this.emit('error', ...errors);
 	}
 
 	/**
-	 * Gets the username of the bot.
-	 * @returns {string} The username of the bot.
-	 * @memberof Bot
+	 * Used to send a heartbeat to the server.
+	 * @private
+	 * @extends WebSocket
 	 */
-	getUsername() {
-		return this.username;
+	_sendHeartbeat() {
+		this._send(1, {});
+
+		this.emit('heartbeat', Date.now());
 	}
 
 	/**
-	 * Gets the discriminator number of the bot.
-	 * @returns {string} The discriminator number of the bot.
-	 * @memberof Bot
+	 * Sends a payload to the server.
+	 * @private
+	 * @extends WebSocket
 	 */
-	getDiscriminator() {
-		return this.discriminator;
-	}
-
-	/**
-	 * Gets the full username and discriminator combined together using a #.
-	 * @returns {string} The full username and discriminator combined together using a #.
-	 * @memberof Bot
-	 */
-	getTag() {
-		return this.getUsername() + '#' + this.getDiscriminator();
-	}
-
-	/**
-	 * Gets the short description of the purpose of the bot.
-	 * @returns {string} A short description of the purpose of the bot.
-	 * @memberof Bot
-	 */
-	getShortDescription() {
-		return this.shortDescription;
-	}
-
-	/**
-	 * Gets the detailed description of the bot. Contains Markdown, may be blank.
-	 * @returns {string} A detailed description of the bot. Contains Markdown, may be blank.
-	 * @memberof Bot
-	 */
-	getFullDescription() {
-		return this.fullDescription;
-	}
-
-	/**
-	 * Gets the URL for the avatar of the bot. Not guaranteed to be available from Discord.
-	 * @returns {string} The URL for the avatar of the bot. Not guaranteed to be available from Discord.
-	 * @memberof Bot
-	 */
-	getAvatarURL() {
-		return this.avatarURL;
-	}
-
-	/**
-	 * Gets the invite URL for the bot provided by the owner.
-	 * @returns {string} The invite URL for the bot provided by the owner.
-	 * @memberof Bot
-	 */
-	getInvite() {
-		return this.invite;
-	}
-
-	/**
-	 * Gets the short prefix which is required to use the bot's commands.
-	 * @returns {string} A short prefix which is required to use the bot's commands.
-	 * @memberof Bot
-	 */
-	getPrefix() {
-		return this.prefix;
-	}
-
-	/**
-	 * Gets the collection of User classes which hold listed owner's information.
-	 * @returns {Collection&lt;User>} A collection of User classes which hold listed owner's information.
-	 * @memberof Bot
-	 */
-	getOwners() {
-		return this.owners;
-	}
-
-	/**
-	 * Gets the string containing the vanity of the bot. May be null.
-	 * @returns {?string} A string containing the vanity of the bot. May be null.
-	 * @memberof Bot
-	 */
-	getVanity() {
-		return this.vanity;
-	}
-
-	/**
-	 * Gets the boolean stating if the avatar is not considered child friendly.
-	 * @returns {boolean} A boolean stating if the avatar is not considered child friendly.
-	 * @memberof Bot
-	 */
-	isNSFW() {
-		return !this.avatarChildFriendly;
-	}
-
-	/**
-	 * Gets an object that contains social links.
-	 * @returns {object} An object that contains social links.
-	 * @memberof Bot
-	 */
-	getLinks() {
-		return this.links;
-	}
-
-	/**
-	 * Gets the date since the bot was added to the site.
-	 * @returns {Date} A date since the bot was added to the site.
-	 * @memberof Bot
-	 */
-	getCreatedAt() {
-		return new Date(this.createdAt);
-	}
-
-	/**
-	 * Gets the date since the bot was last updated.
-	 * @returns {Date} A date since the bot was last updated.
-	 * @memberof Bot
-	 */
-	getUpdatedAt() {
-		return new Date(this.updatedAt);
+	_send(op, d) {
+		this._socket.send(JSON.stringify({ op, t: Date.now(), d }));
 	}
 }
 
-module.exports = Bot;</code></pre>
+/**
+ * The class that holds information on close events.
+ * @class
+ * @param {number} code The close code.
+ * @param {?string} message The close message.
+ * @property {number} code The close code.
+ * @property {?string} message The close message.
+ */
+class CloseEvent {
+	constructor(code, message) {
+		this.code = code;
+		this.message = message;
+	}
+}
+
+/**
+ * The class that is used for bot views.
+ * @class
+ * @param {object} data The raw payload data that was sent from the server.
+ * @property {string} bot The ID of the bot that was viewed.
+ */
+class BotViewEvent {
+	constructor(data) {
+		this.bot = data.bot;
+	}
+}
+
+/**
+ * The class that is used for bot invites.
+ * @class
+ * @param {object} data The raw payload data that was sent from the server.
+ * @property {string} bot The ID of the bot that was viewed.
+ */
+class BotInviteEvent {
+	constructor(data) {
+		this.bot = data.bot;
+	}
+}
+
+/**
+ * The class that is used for bot upvotes.
+ * @class
+ * @param {object} data The raw payload data that was sent from the server.
+ * @property {string} bot The ID of the bot that was viewed.
+ * @property {User} user The class that holds information on who upvoted the bot.
+ */
+class BotUpvoteEvent {
+	constructor(data) {
+		this.bot = data.bot;
+		this.user = new User(data.user);
+	}
+}
+
+module.exports = WebSocket;
+module.exports.CloseEvent = CloseEvent;</code></pre>
         </article>
     </section>
 
