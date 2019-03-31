@@ -1,6 +1,6 @@
 {
 	"name": "botlist.space",
-	"version": "3.1.6",
+	"version": "3.1.7",
 	"description": "A simple library for connecting with the botlist.space API.",
 	"main": "lib/Client.js",
 	"scripts": {
@@ -11,8 +11,10 @@
 	"license": "MIT",
 	"dependencies": {
 		"snekfetch": "^4.0.4",
-		"toast-jsdoc": "^1.0.2",
 		"ws": "^6.1.3"
+	},
+	"devDependencies": {
+		"toast-jsdoc": "^1.0.2"
 	},
 	"repository": {
 		"type": "git",
