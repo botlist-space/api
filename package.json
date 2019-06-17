@@ -2,7 +2,7 @@
 	"name": "botlist.space",
 	"version": "3.2.2",
 	"description": "A simple library for connecting with the botlist.space API.",
-	"main": "lib/Client.js",
+	"main": "lib/index.js",
 	"scripts": {
 		"docs": "jsdoc lib/ -R README.md -c .jsdoc.json"
 	},
