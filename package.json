@@ -1,6 +1,6 @@
 {
 	"name": "botlist.space",
-	"version": "3.2.2",
+	"version": "3.3.0",
 	"description": "A simple library for connecting with the botlist.space API.",
 	"main": "lib/index.js",
 	"scripts": {
