@@ -1,59 +1,94 @@
-# botlist.space API
-A simple library for connecting with the botlist.space API.
+# discordlist.space API
+The official Node.js library to interact with the discordlist.space API.
 
 ## Getting Started
-Simply install by navigating to your project directory then running `npm i botlist.space`.
+Simply install by navigating to your project directory then running `npm i discordlist.space`.
 
 ## API Example
-```js
-const BotList = require('botlist.space');
+```typescript
+const api = require('discordlist.space');
 
-const client = new BotList.Client({ id: '12345678900000000', botToken: 'xxx' });
+// GET /v2/statistics
+api.getStatistics();
 
-client.getStatistics().then((stats) => /* ... */).catch((error) => /* ... */);
-client.getAllBots().then((bots) => /* ... */).catch((error) => /* ... */);
-client.getBot('12345678900000001').then((bot) => /* ... */).catch((error) => /* ... */);
-client.getUpvotes().then((upvotes) => /* ... */).catch((error) => /* ... */);
-client.hasUpvoted('12345678900000002').then((hasUpvoted) => /* ... */).catch((error) => /* ... */);
-client.getSelfBot().then((bot) => /* ... */).catch((error) => /* ... */);
-client.postServerCount(12345).then((bot) => /* ... */).catch((error) => /* ... */); // Server count
-client.postServerCount([ 1250, 1250, 1250 ]).then((bot) => /* ... */).catch((error) => /* ... */); // Shards
-client.getUser('12345678900000002').then((user) => /* ... */).catch((error) => /* ... */);
-client.getUserBots('12345678900000002').then((bots) => /* ... */).catch((error) => /* ... */);
+// GET /v2/languages?page=1&count=16&sortBy=name&sortDirection=ascending
+api.getLanguages(page = 1, count = 16, sortBy = 'name', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/tags?type=all&page=1&count=16&sortBy=name&sortDirection=ascending
+api.getTags(type: 'all' | 'bot' | 'server' = 'all', page = 1, count = 16, sortBy = 'name', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/bots?page=1&count=16&sortBy=top&sortDirection=descending
+api.getBots(page = 1, count = 16, sortBy = 'top', sortDirection: 'ascending' | 'descending' = 'descending', query = '', filters: string[] = ['approved'], tags: string[] = []);
+
+// GET /v2/bots/:id
+api.getBot(id: string);
+
+// POST /v2/bots/:id
+api.updateBot(id: string, token: string, form: BotUpdateProperties);
+
+// GET /v2/bots/:id/reviews?page=1&count=16&sortBy=top&sortDirection=descending
+api.getBotReviews(id: string, token: string, page = 1, count = 16, sortBy = 'top', sortDirection: 'ascending' | 'descending' = 'descending');
+
+// GET /v2/bots/:id/analytics?from=<1 week ago>&to=<now>
+api.getBotAnalytics(id: string, token: string, from = Date.now() - 1000 * 60 * 60 * 24 * 7, to = Date.now());
+
+// GET /v2/bots/:id/upvotes
+api.getBotUpvotes(id: string, token: string, page = 1, count = 16, sortBy = 'timestamp', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/bots/:botID/upvotes/status/:userID
+api.getBotUserUpvoteStatus(botID: string, userID: string, token: string);
+
+// GET /v2/bots/:id/upvotes/leaderboard?page=1&count=16&sortBy=count&sortDirection=descending
+api.getBotUpvoteLeaderboard(id: string, token: string, page = 1, count = 16, sortBy = 'count', sortDirection: 'ascending' | 'descending' = 'descending');
+
+// GET /v2/bots/:id/audit?page=1&count=16&sortBy=timestamp&sortDirection=descending
+api.getBotAuditLog(id: string, token: string, page = 1, count = 16, sortBy = 'timestamp', sortDirection: 'ascending' | 'descending' = 'descending');
+
+// GET /v2/bots/:id/owners?page=16&count=16&sortBy=id&sortDirection=ascending
+api.getBotOwners(id: string, page = 1, count = 16, sortBy = 'id', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/servers?page=1&count=16&sortBy=top&sortDirection=descending
+api.getServers(page = 1, count = 16, sortBy = 'top', sortDirection: 'ascending' | 'descending' = 'descending', query = '', filters: string[] = ['approved'], tags: string[] = []);
+
+// GET /v2/servers/:id
+api.getServer(id: string);
+
+// POST /v2/servers/:id
+api.updateServer(id: string, token: string, form: ServerUpdateProperties);
+
+// GET /v2/servers/:id/reviews?page=1&count=16&sortBy=top&sortDirection=descending
+api.getServerReviews(id: string, token: string, page = 1, count = 16, sortBy = 'top', sortDirection: 'ascending' | 'descending' = 'descending');
+
+// GET /v2/servers/:id/analytics?from=<1 week ago>&to=<now>
+api.getServerAnalytics(id: string, token: string, from = Date.now() - 1000 * 60 * 60 * 24 * 7, to = Date.now());
+
+// GET /v2/servers/:id/upvotes
+api.getServerUpvotes(id: string, token: string, page = 1, count = 16, sortBy = 'timestamp', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/bots/:botID/upvotes/status/:userID
+api.getServerUserUpvoteStatus(botID: string, userID: string, token: string);
+
+// GET /v2/servers/:id/upvotes/leaderboard?page=1&count=16&sortBy=count&sortDirection=descending
+api.getServerUpvoteLeaderboard(id: string, token: string, page = 1, count = 16, sortBy = 'count', sortDirection: 'ascending' | 'descending' = 'descending');
+
+// GET /v2/servers/:id/audit?page=1&count=16&sortBy=timestamp&sortDirection=descending
+api.getServerAuditLog(id: string, token: string, page = 1, count = 16, sortBy = 'timestamp', sortDirection: 'ascending' | 'descending' = 'descending');
+
+// GET /v2/servers/:id/owners?page=16&count=16&sortBy=id&sortDirection=ascending
+api.getServerOwners(id: string, page = 1, count = 16, sortBy = 'id', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/users/:id
+api.getUser(id: string);
+
+// GET /v2/users/:id/bots?page=1&count=16&sortBy=username&sortDirection=ascending
+api.getUserBots(id: string, token: string | null = null, page = 1, count = 16, sortBy = 'username', sortDirection: 'ascending' | 'descending' = 'ascending');
+
+// GET /v2/users/:id/servers?page=1&count=16&sortBy=name&sortDirection=ascending
+api.getUserServers(id: string, token: string | null = null, page = 1, count = 16, sortBy = 'name', sortDirection: 'ascending' | 'descending' = 'ascending');
 ```
-
-## WebSocket Example
-```js
-const BotList = require('botlist.space');
-
-const client = new BotList.WebSocket({ tokens: [ 'xxx', 'xxx', 'xxx' ], reconnect: true });
-
-client.on('connected', () => {
-    console.log('Successfully connected to the botlist.space gateway');
-});
-
-client.on('view', (event) => {
-    console.log('Someone has viewed one of my bots: ' + event.bot.username);
-});
-
-client.on('invite', (event) => {
-    console.log('Someone has invited one of my bots: ' + event.bot.username);
-});
-
-client.on('upvote', (event) => {
-    console.log(event.user.username + 'has upvoted one of my bots: ' + event.bot.username);
-});
-
-client.on('close', (event) => {
-    console.log('The gateway was closed', event);
-});
-```
-
-## Documentation
-[https://botlist-space.github.io/api/](https://botlist-space.github.io/api/)
 
 ## API Documentation
-[https://docs.botlist.space](https://docs.botlist.space)
+[https://docs.discordlist.space](https://docs.discordlist.space)
 
 ## License
-[MIT](https://github.com/botlist-space/api/blob/master/LICENSE)
+[MIT](https://github.com/discordlist-space/api/blob/master/LICENSE)
