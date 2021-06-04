@@ -1,7 +1,0 @@
-{
-	"opts": {
-		"template": "node_modules/toast-jsdoc/",
-		"destination": "docs/",
-		"recurse": true
-	}
-}
